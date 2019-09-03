@@ -16,41 +16,50 @@
     </head>
     <body>
         <h2>선언적 렌더링</h2>
-        <div id="app">
-          {{ message }}
+        <div id="app" class="app">
+            <!-- 데이터 출력부 -->
+            {{ message }}
         </div>
         <script>
+            //본 예제에서 var app 변수 선언은 크게 의미없음.  
             var app = new Vue({
-              el: '#app',
-              data: {
-                message: '안녕하세요 Vue!'
-              }
+                // DOM에 선언된 id 또는 class 값과 매칭.(테스트 결과 .app으로 설정하여 클래스 값과도 매칭 가능함.)
+                el: '#app',
+                // DOM에 나타날 텍스트 데이터
+                data: {
+                    message: '안녕하세요 Vue!ㅇfdfdfdㅇㅇ'
+                }
             })
         </script>
         
         <div id="app-2">
-          <span v-bind:title="message">
-            내 위에 잠시 마우스를 올리면 동적으로 바인딩 된 title을 볼 수 있습니다!
-          </span>
+            <!--v-bind 같은 속성을 디렉티브라 명칭함. v-bind 란 놈은 title 속성을 출력하는 디렉티브임-->
+            <span v-bind:title="message">
+                내 위에 잠시 마우스를 올리면 동적으로 바인딩 된 title을 볼 수 있습니다!
+            </span>
         </div>
         <script>
             var app2 = new Vue({
-              el: '#app-2',
-              data: {
-                message: '이 페이지는 ' + new Date() + ' 에 로드 되었습니다'
-              }
+                el: '#app-2',
+                // 날짜와 텍스트 데이터가 message 파라메터? 에 세팅되어있다. DOM 출력부에 v-bind 디렉티브를 활용하여 title 속성을 컨트롤 하게되어있으니 해당 값은 title 속성에 세팅된다.
+                data: {
+                    message: '이 페이지는 ' + new Date() + ' 에 로드 되었습니다'
+                }
             })
         </script>
         
+        <h2>조건문과 반복문</h2>
         <div id="app-3">
-          <p v-if="seen">이제 나를 볼 수 있어요</p>
+            <!--v-if 디렉티브는 조건문이다. -->
+            <p v-if="seen">이제 나를 볼 수 있어요</p>
         </div>
         <script>
-           var app3 = new Vue({
-              el: '#app-3',
-              data: {
-                seen: true
-              }
+            // true 이면 p 태그를 나타내고 false면 나타내지 않는다. Vue.js 로 데이터 바인딩도 할수 있지만 DOM 구조도 변경가능하다.
+            var app3 = new Vue({
+                el: '#app-3',
+                data: {
+                    seen: true
+                }
             }) 
         </script>
         
@@ -81,6 +90,7 @@
             })
         </script>
         
+        <h2>사용자 입력 핸들링</h2>
         <div id="app-5">
           <p>{{ message }}</p>
           <button v-on:click="reverseMessage">메시지 뒤집기</button>
@@ -111,6 +121,8 @@
               }
             })
         </script>
+        
+        <h2>컴포넌트를 사용한 작성방법</h2>
         <div id="app-7">
           <ol>
             <!-- 
