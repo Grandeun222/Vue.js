@@ -64,16 +64,18 @@
         </script>
         
         <div id="app-4">
-          <ol>
-            <li v-for="todo in todos">
-              {{ todo.text }}
-            </li>
-          </ol>
+            <ol>
+            <!-- v-for 디렉티브는 반복문이다.  v-for="DOM에서 매칭할 이름 in 스크립트에서 만들어진 배열 파라메터 명"-->
+                <li v-for="todo in todos">
+                    {{ todo.text }}
+                </li>
+            </ol>
         </div>
         <script>
             var app4 = new Vue({
               el: '#app-4',
               data: {
+                //배열 데이터 todos 선언
                 todos: [
                   { text: 'JavaScript 배우기' },
                   { text: 'Vue 배우기' },
@@ -92,8 +94,9 @@
         
         <h2>사용자 입력 핸들링</h2>
         <div id="app-5">
-          <p>{{ message }}</p>
-          <button v-on:click="reverseMessage">메시지 뒤집기</button>
+            <p>{{ message }}</p>
+            <!-- v-on 디렉티브는 이벤트를 관리한다. :click은 이벤트 액션이다. 아래는 클릭 이벤트로 reverseMessage 함수를 호출하는 문법이다. -->
+            <button v-on:click="reverseMessage">메시지 뒤집기</button>
         </div>
         <script>
             var app5 = new Vue({
@@ -101,7 +104,9 @@
               data: {
                 message: '안녕하세요! Vue.js!'
               },
+                //메소드를 이런식으로 처리하나보다.
               methods: {
+                //reverseMessage 이라는 함수를 선언했다. 이것은 문자열을 반전시킨다.
                 reverseMessage: function () {
                   this.message = this.message.split('').reverse().join('')
                 }
@@ -110,15 +115,16 @@
         </script>
         
         <div id="app-6">
-          <p>{{ message }}</p>
-          <input v-model="message">
+            <p>{{ message }}</p>
+            <!-- v-model 디렉티브는 DOM을 건드리지 않고 양방향 바인딩을 제공한다. -->
+            <input v-model="message">
         </div>
         <script>
             var app6 = new Vue({
-              el: '#app-6',
-              data: {
-                message: '안녕하세요 Vue!'
-              }
+                el: '#app-6',
+                data: {
+                    message: '안녕하세요 Vue!'
+                }
             })
         </script>
         
@@ -153,5 +159,6 @@
               }
             })
         </script>
+        
     </body>
 </html>
